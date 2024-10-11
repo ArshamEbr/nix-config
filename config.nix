@@ -17,7 +17,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "Asia/Tehran";
 
   # Configure network proxy if necessary
- networking.proxy.default = "http://192.168.226.124:10809";
+# networking.proxy.default = "http://192.168.226.124:10809";
 # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 
@@ -86,6 +86,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      sbctl
      p7zip
      btop
+     lshw
       ];
 
   programs.hyprland = {
@@ -118,42 +119,25 @@ nixpkgs.config.allowUnfree = true;
 
 ####NVIDIA DISABLE#####
 
- boot.extraModprobeConfig = ''
-   blacklist nouveau
-   options nouveau modeset=0
- ''; 
- services.udev.extraRules = ''
-   # Remove NVIDIA USB xHCI Host Controller devices, if present
-   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
-   # Remove NVIDIA USB Type-C UCSI devices, if present
-   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
-   # Remove NVIDIA Audio devices, if present
-   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-   # Remove NVIDIA VGA/3D controller devices
-   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
- '';
- boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+# boot.extraModprobeConfig = ''
+#   blacklist nouveau
+#   options nouveau modeset=0
+# ''; 
+# services.udev.extraRules = ''
+#   # Remove NVIDIA USB xHCI Host Controller devices, if present
+#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
+#   # Remove NVIDIA USB Type-C UCSI devices, if present
+#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
+#   # Remove NVIDIA Audio devices, if present
+#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
+#   # Remove NVIDIA VGA/3D controller devices
+#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
+# '';
+# boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
 
 
 
 
-####NVIDIA ENABLE#####
-
- # services.xserver.videoDrivers = ["nvidia"];
- # hardware.nvidia = {
- # modesetting.enable = true;
- # powerManagement.enable = false;
- # powerManagement.finegrained = false;
- # open = false;
- # nvidiaSettings = true;
- # package = config.boot.kernelPackages.nvidiaPackages.beta;
- # };
-
-
-
-
-# services.xserver.videoDrivers = [ "nvidia" ];
-# services.xserver.enable = true;
 
 
 
