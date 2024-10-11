@@ -2,6 +2,8 @@
 
 {
 
+hardware.graphics = { enable = true; };
+
 ####NVIDIA ENABLE#####
 
   services.xserver.videoDrivers = ["nvidia"];

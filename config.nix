@@ -100,10 +100,7 @@ security.polkit.enable = true;
 #  WLR_NO_HARDWARE_CURSORS = "1";
 #  NIXOS_OZONE_WL = "1";
 # };
- 
-# hardware = {
-#  opengl.enable = true;
-# };
+
 
 services.displayManager.sddm = {
  enable = true;
@@ -111,35 +108,11 @@ services.displayManager.sddm = {
  package = pkgs.kdePackages.sddm;
 };
 
-hardware.opengl = {
+hardware.graphics = {
 enable = true;
 };
 
 nixpkgs.config.allowUnfree = true;
-
-####NVIDIA DISABLE#####
-
-# boot.extraModprobeConfig = ''
-#   blacklist nouveau
-#   options nouveau modeset=0
-# ''; 
-# services.udev.extraRules = ''
-#   # Remove NVIDIA USB xHCI Host Controller devices, if present
-#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
-#   # Remove NVIDIA USB Type-C UCSI devices, if present
-#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
-#   # Remove NVIDIA Audio devices, if present
-#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-#   # Remove NVIDIA VGA/3D controller devices
-#   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
-# '';
-# boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
-
-
-
-
-
-
 
  # Set HTTP and HTTPS proxies
 # environment.variables = {
