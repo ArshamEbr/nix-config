@@ -6,7 +6,9 @@
   
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
-
+  
+   "$scrPath" = "$HOME/.local/share/bin";
+  
     "$browser" = "brave";
     "$file" = "nautilus";
     "$menu" = "rofi -show drun";

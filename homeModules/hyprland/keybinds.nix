@@ -12,6 +12,11 @@
       "$mod, R, forcerendererreload"
       "$mod, M, exec, [float; size 50% 55%; move 100%-w-10 10] $terminal -e $monitor"
       "$mod, T, exec, $terminal"
+
+      "$mod+Alt, Up, exec, $scrPath/wbarconfgen.sh n"
+      "$mod+Alt, Down, exec, $scrPath/wbarconfgen.sh p" 
+
+#      "Ctrl+Alt, W, exec, killall waybar || waybar "
 #      "$mod, V, exec, $terminal --class clipse -e fish -c 'clipse'"
 
       "$alt, T, setfloating"

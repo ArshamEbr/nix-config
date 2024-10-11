@@ -43,6 +43,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      extraGroups = [ "wheel" "NetworkManager" "plugdev" "NetworkManager" ];
    };
 
+   virtual.enable = true;
+
   programs.nh = {
       enable = true;
       flake = "/home/${user.name}/nix-config";
@@ -55,7 +57,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
    environment.systemPackages = with pkgs; [
-     vim
+     #vim
      wget
      neofetch
      git

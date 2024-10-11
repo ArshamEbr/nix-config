@@ -7,17 +7,13 @@
     programs.kitty = {
       enable = true;
 
-      #font = {
-      #  name = "JetBrainsMonoNF-SemiBold";
-      #  size = 12#;
-      #  package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-      #};
-
       settings = {
         window_padding_width = 5;
-        background_opacity = lib.mkForce "0.1";
-        background_blur = 1;
+        background_opacity = lib.mkForce "0.5";
+        dynamic_background_opacity = true;
+        background_blur = 5;
         confirm_os_window_close = 0;
+        enable_audio_bell = true;
       };
     };
 
