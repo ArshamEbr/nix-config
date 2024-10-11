@@ -7,7 +7,7 @@
     bind = [
       "$mod, A, exec, $menu"
       "$mod, B, exec, $browser"
-      "$mod, C, exec, code"
+      "$mod, C, exec, codium"
       "$mod, E, exec, $file"
       "$mod, R, forcerendererreload"
       "$mod, M, exec, [float; size 50% 55%; move 100%-w-10 10] $terminal -e $monitor"
