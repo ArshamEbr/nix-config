@@ -108,10 +108,6 @@ services.displayManager.sddm = {
  package = pkgs.kdePackages.sddm;
 };
 
-hardware.graphics = {
-enable = true;
-};
-
 nixpkgs.config.allowUnfree = true;
 
  # Set HTTP and HTTPS proxies

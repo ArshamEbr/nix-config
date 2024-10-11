@@ -21,10 +21,13 @@ hardware.graphics = { enable = true; };
 			enable = true;
 			enableOffloadCmd = true;
     };
-		intelBusId = "PCI:00:02:0";
+		intelBusId = "PCI:0:2:0";
 		nvidiaBusId = "PCI:1:0:0";
 	};
 
+
+  # nvidia minor fixes:    
+  
 # boot.initrd.kernelModules = [ "nvidia" ];
 # boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 # hardware.nvidia.forceFullCompositionPipeline = true;

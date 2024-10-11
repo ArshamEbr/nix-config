@@ -5,14 +5,14 @@
 #    ./cliPrograms
 #    ./guiPrograms
      ./hyprland
-#    ./modules
+    ./modules
   ];
 
   options = {
  #   guiPrograms.enable = lib.mkEnableOption "guiPrograms";
  #   cliPrograms.enable = lib.mkEnableOption "cliPrograms";
     hyprland.enable = lib.mkEnableOption "hyprland";
- #   modules.enable = lib.mkEnableOption "modules";
+    modules.enable = lib.mkEnableOption "modules";
   };
 
   config = {
@@ -36,12 +36,12 @@
       settings = lib.mkDefault true;
     };
 
-   # modules = lib.mkIf config.modules.enable {
-   #   packages = lib.mkDefault true;
-   #   programs = lib.mkDefault true;
-   #   stylix = lib.mkDefault true;
-   #   themes = lib.mkDefault false;
-   # };
+    modules = lib.mkIf config.modules.enable {
+      packages = lib.mkDefault true;
+      programs = lib.mkDefault true;
+      stylix = lib.mkDefault true;
+      themes = lib.mkDefault false;
+    };
 
   };
 }
