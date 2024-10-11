@@ -9,7 +9,7 @@
     stylix = {
       enable = true;
       autoEnable = true;
-      image = ../../assets/quasar-catppuccin-mocha.png;
+      image = ../../misc/quasar-catppuccin-mocha.png;
       polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       override = {

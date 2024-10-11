@@ -40,7 +40,7 @@
       packages = lib.mkDefault true;
       programs = lib.mkDefault true;
       stylix = lib.mkDefault true;
-      themes = lib.mkDefault false;
+  #    themes = lib.mkDefault false;
     };
 
   };

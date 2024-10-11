@@ -18,6 +18,7 @@
     name = "arsham";
     host = "Arsham-NixOS";
     system = "x86_64-linux";
+    misc = "~/nix-config/misc";
   };
   in
   {
