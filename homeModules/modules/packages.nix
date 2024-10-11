@@ -18,6 +18,16 @@
       vscodium
       waybar
       webcord
+      brave
+      firefox
+      dunst
+      rofi-wayland
+      swww
+      polkit_gnome
+      cliphist
+      hyprpicker
+      wlogout
+      networkmanagerapplet
     ];
 
   };

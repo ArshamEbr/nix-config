@@ -15,8 +15,8 @@
 
       settings = {
         window_padding_width = 5;
-        #background_opacity = "0.7";
-        #background_blur = 1;
+        background_opacity = lib.mkForce "0.1";
+        background_blur = 1;
         confirm_os_window_close = 0;
       };
     };

@@ -60,33 +60,18 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      neofetch
      git
      curl
-     kitty
-     telegram-desktop
-     brave
-     firefox
-     vscode
-     nautilus
 #    dolphin
 #    qt5-imageformats
      networkmanager
      ffmpegthumbs
      kde-cli-tools
-     waybar
-     networkmanagerapplet
-     dunst
-     rofi-wayland
-     swww
 #    swaylock-effects-git
-     wlogout
-     hyprpicker
-     cliphist
-     polkit_gnome
-     brightnessctl
 #    polkit-kde-agent
      sbctl
      p7zip
      btop
      lshw
+     rustc
       ];
 
   programs.hyprland = {

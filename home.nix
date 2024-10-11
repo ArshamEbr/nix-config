@@ -20,7 +20,7 @@
     enable = true;
     hyprpaper = false;
   };
-
+  guiPrograms.enable = true;
   modules.enable = true;
 
   xdg.userDirs = {
