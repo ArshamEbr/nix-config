@@ -2,15 +2,15 @@
 
 {
   imports = [
-#    ./cliPrograms
-#    ./guiPrograms
-     ./hyprland
+#   ./cliPrograms
+    ./guiPrograms
+    ./hyprland
     ./modules
   ];
 
   options = {
- #   guiPrograms.enable = lib.mkEnableOption "guiPrograms";
- #   cliPrograms.enable = lib.mkEnableOption "cliPrograms";
+    guiPrograms.enable = lib.mkEnableOption "guiPrograms";
+ #  cliPrograms.enable = lib.mkEnableOption "cliPrograms";
     hyprland.enable = lib.mkEnableOption "hyprland";
     modules.enable = lib.mkEnableOption "modules";
   };
@@ -25,10 +25,10 @@
   #    starship = lib.mkDefault true;
   #  };
 
-  #  guiPrograms = lib.mkIf config.guiPrograms.enable {
-  #    librewolf = lib.mkDefault true;
-  #    kitty = lib.mkDefault true;
-  #  };
+    guiPrograms = lib.mkIf config.guiPrograms.enable {
+    # librewolf = lib.mkDefault true;
+      kitty = lib.mkDefault true;
+    };
 
     hyprland = lib.mkIf config.hyprland.enable {
       dependencies = lib.mkDefault true;
@@ -39,8 +39,8 @@
     modules = lib.mkIf config.modules.enable {
       packages = lib.mkDefault true;
       programs = lib.mkDefault true;
-     # stylix = lib.mkDefault true;
-     # themes = lib.mkDefault false;
+      stylix = lib.mkDefault true;
+      themes = lib.mkDefault false;
     };
 
   };
