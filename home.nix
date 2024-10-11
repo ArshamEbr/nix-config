@@ -21,7 +21,7 @@
     hyprpaper = false;
   };
 
-#  modules.enable = true;
+  modules.enable = true;
 
   xdg.userDirs = {
     enable = true;

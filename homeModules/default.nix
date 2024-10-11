@@ -39,8 +39,8 @@
     modules = lib.mkIf config.modules.enable {
       packages = lib.mkDefault true;
       programs = lib.mkDefault true;
-      stylix = lib.mkDefault true;
-      themes = lib.mkDefault false;
+     # stylix = lib.mkDefault true;
+     # themes = lib.mkDefault false;
     };
 
   };
