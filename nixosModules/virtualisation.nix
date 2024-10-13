@@ -14,6 +14,8 @@
       };
     };
 
+    boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+
     virtualisation.spiceUSBRedirection.enable = true;
     users.users.${user.name}.extraGroups = [ "libvirtd" ];
     programs.virt-manager.enable = true;
@@ -29,6 +31,9 @@
 #     virtio-win
       win-spice
     ];
+
+    virtualisation.kvmgt.enable = true;
+    boot.extraModprobeConfig = "options i915 enable_guc=2";
 
     home-manager.users.${user.name}.dconf.settings."org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];

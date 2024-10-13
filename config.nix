@@ -29,10 +29,17 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+  
+    services = {
+   # blueman.enable = true;
+   # gnome.gnome-keyring.enable = true;
+   # libinput.enable = true;
+    udisks2.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -74,7 +81,80 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      btop
      lshw
      rustc
+     cmake
+     gnumake
+     gcc
+     freetype
+     wayland
+     ninja
+     binutils
+     libiberty
+     libmtp
+     mtpfs
+     gvfs
+     android-file-transfer
+     glib
+     jmtpfs
+     go-mtpfs
+     xorg.xf86inputevdev
+     xorg.xinput
+     libinput
+     gcc
+     cmake
+     ninja
+     SDL2.dev
+     xorg.libX11
+     xorg.libXrandr
+     xorg.libXi
+     xorg.libXcursor
+     freetype
+     mesa
+     pkg-config
+     libGLU
+     SDL2_ttf
+     fontconfig
+     gmp
+     spice-protocol
+     nettle
+     harfbuzz
+     xorg.libXdmcp
+     glib
+     pcre
+     pcre2
+     expat
+     wayland
+     wayland-protocols
+     binutils
+     libiberty
+     libbfd
+     libxkbcommon
+     xscreensaver
+     xorg.libXScrnSaver
+     xorg.libXinerama
+     xorg.libXpresent
+     pipewire
+     pulseaudio
+     libsamplerate
+     wayland-scanner
+    # wayland-egl
+    # waylandProtocols
       ];
+
+  
+  services.udev.packages = [ pkgs.libmtp pkgs.libinput ];
+  services.gvfs.enable = true;
+
+
+services.xserver = {
+  enable = true;
+  layout = "us";  # Adjust to your preferred keyboard layout
+ # xkbOptions = "ctrl:nocaps";  # Example for remapping Caps Lock to Control
+
+  libinput = {
+    enable = true;  # Enable libinput for input devices
+  };
+};
+
 
   programs.hyprland = {
   enable = true;

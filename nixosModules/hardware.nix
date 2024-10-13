@@ -18,6 +18,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/partitionD" = {
+  device = "/dev/sda3";
+  fsType = "ntfs";
+  };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/308F-14C0";
       fsType = "vfat";
