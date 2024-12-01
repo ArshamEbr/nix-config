@@ -4,7 +4,43 @@
   imports =
     [
       ./nixosModules
+      ./sriov.nix
     ];
+
+
+  specialisation.vbox-kvm-sriov.configuration = {
+    virtualisation.cyberus.intel-graphics-sriov.enable = true;
+    virtualisation.virtualbox.host = {
+      enable = true;
+      enableKvm = true;
+      enableHardening = false;
+      addNetworkInterface = false;
+    };
+  };
+
+#systemd.services.enableSriov = {
+#  description = "Enable SR-IOV for PCI devices";
+#  wantedBy = [ "graphical.target" ];
+#  path = [ pkgs.pciutils ];
+#  serviceConfig = {
+#    Type = "oneshot";
+#    ExecStart = pkgs.writeShellScriptBin "enableSriov" ''
+#    deviceBDF="0000:00:02.0"
+#          IFS=" " read -ra lspciString <<< "$(lspci -s $deviceBDF -n)"
+#          if [ "''${lspciString[1]}"=="0300" ]; then
+#            IFS=":" read -ra vendorDevice <<< "''${lspciString[2]}"
+#            echo '0' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe
+#            echo '7' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_numvfs
+#            echo '1' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe
+#            echo "''${vendorDevice[0]} ''${vendorDevice[1]}" | tee -a /sys/bus/pci/drivers/vfio-pci/new_id
+#            chmod 0666 /dev/vfio/*
+#          else
+#            echo "The Device at $deviceBDF is no Graphics Card"
+#          fi
+#        '';
+#  };
+#};
+
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -17,7 +53,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   time.timeZone = "Asia/Tehran";
 
   # Configure network proxy if necessary
-# networking.proxy.default = "http://192.168.226.124:10809";
+ #networking.proxy.default = "http://192.168.55.106:10809";
 # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 
@@ -89,13 +125,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      ninja
      binutils
      libiberty
-     libmtp
-     mtpfs
-     gvfs
-     android-file-transfer
-     glib
-     jmtpfs
-     go-mtpfs
      xorg.xf86inputevdev
      xorg.xinput
      libinput
@@ -138,6 +167,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      wayland-scanner
     # wayland-egl
     # waylandProtocols
+      libmtp
+     # mtpfs
+      gvfs
+     # android-file-transfer
+      glib
+      jmtpfs
+     # go-mtpfs
       ];
 
   

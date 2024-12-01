@@ -52,19 +52,19 @@
         terminal = 1.0;
       };
 
-      fonts = {
-        monospace = {
-          name = "JetBrainsMonoNF-SemiBold";
-          package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-        };
-
-        sizes = {
-          applications = 10;
-          desktop = 10;
-          popups = 10;
-          terminal = 12;
-        };
-      };
+      #fonts = {
+      #  monospace = {
+      #    name = "JetBrainsMonoNF-SemiBold";
+      #    package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+      #  };
+#
+      #  sizes = {
+      #    applications = 10;
+      #    desktop = 10;
+      #    popups = 10;
+      #    terminal = 12;
+      #  };
+      #};
 
       targets = {
         kitty.variant256Colors = true;

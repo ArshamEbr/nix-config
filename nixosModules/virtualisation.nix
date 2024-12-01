@@ -14,7 +14,30 @@
       };
     };
 
-    boot.kernelParams = [ "intel_iommu=on" "iommu=pt" ];
+    boot.kernelParams = [
+      "split_lock_detect=off"
+      "i915.force_probe=*"
+      "i915.max_vfs=7"
+      "intel_iommu=on"
+      "iommu=pt"
+      "vfio-pci.ids=10de:1c94"
+      ];
+      
+    boot = {
+      initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
+    };
+    
+
+    boot.blacklistedKernelModules = [ "nouveau" ];
 
     virtualisation.spiceUSBRedirection.enable = true;
     users.users.${user.name}.extraGroups = [ "libvirtd" ];
@@ -31,6 +54,7 @@
 #     virtio-win
       win-spice
     ];
+
 
     virtualisation.kvmgt.enable = true;
     boot.extraModprobeConfig = "options i915 enable_guc=2";

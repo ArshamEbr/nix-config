@@ -50,8 +50,8 @@
 
     decoration = {
       rounding = 10;
-      drop_shadow = false;
-      blur = {
+      shadow.enabled =  false;    
+        blur = {
         enabled = false;
         size = 4;
         passes = 2;
