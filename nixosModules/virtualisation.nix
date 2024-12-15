@@ -15,12 +15,13 @@
     };
 
     boot.kernelParams = [
-      "split_lock_detect=off"
-      "i915.force_probe=*"
-      "i915.max_vfs=7"
+    # "split_lock_detect=off"
+    # "i915.force_probe=*"
+    # "i915.max_vfs=7"
       "intel_iommu=on"
       "iommu=pt"
-      "vfio-pci.ids=10de:1c94"
+      #"vfio-pci.ids=10de:1c94"
+      #"vfio-pci.ids=8086:9a49"
       ];
       
     boot = {
@@ -28,7 +29,6 @@
         "vfio_pci"
         "vfio"
         "vfio_iommu_type1"
-
         "nvidia"
         "nvidia_modeset"
         "nvidia_uvm"

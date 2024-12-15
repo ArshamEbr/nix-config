@@ -5,6 +5,7 @@
     "$alt" = "ALT";
 
     bind = [
+      "$mod, L, exec, ~/nix-config/misc/looking-glass-client"
       "$mod, A, exec, $menu"
       "$mod, B, exec, $browser"
       "$mod, C, exec, codium"
@@ -36,9 +37,9 @@
       "$alt, F, fullscreenstate, 0 2"
 
       # Screenshot
-      ", PRINT, exec, hyprshot -m window -o ~/Pictures/Screenshots"
-      "$mod, PRINT, exec, hyprshot -m output -o ~/Pictures/Screenshots"
-      "SHIFT, PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots" 
+     # "$mod, <, exec, hyprshot -m window -o ~/Pictures/Screenshots"
+      "$mod, P, exec, hyprshot -m output -o ~/Pictures/Screenshots"
+      "SHIFT, P, exec, hyprshot -m region -o ~/Pictures/Screenshots" 
 
       # Move Focus with $mod + Arrow keys
       "$mod, left, movefocus, l"

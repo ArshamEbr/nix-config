@@ -6,7 +6,7 @@ hardware.graphics = { enable = true; };
 
 ####NVIDIA ENABLE#####
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia" "modesetting" "intel"];
   hardware.nvidia = {
   modesetting.enable = true;
   powerManagement.enable = false;

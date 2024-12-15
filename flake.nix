@@ -2,11 +2,6 @@
   description = "NixOS Flake Configuration";
 
   inputs = {
-    #  sriov-Module = {
-    #  url = "github:cyberus-technology/nixos-sriov";
-    #  flake = false;
-    #};
-    #sriovModule.url = "github:cyberus-technology/nixos-sriov";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     catppuccin.url = "github:catppuccin/nix";
     stylix.url = "github:danth/stylix";
@@ -19,10 +14,6 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
-  #  sriov-modules = builtins.fetchGit {
-  #  url = "https://github.com/cyberus-technology/nixos-sriov";
-  #  ref = "main";
-  #};
   user = {
     name = "arsham";
     host = "Arsham-NixOS";

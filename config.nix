@@ -4,43 +4,20 @@
   imports =
     [
       ./nixosModules
-      ./sriov.nix
+    #  ./sriov.nix
     ];
 
+hardware.graphics.enable = true;
 
-  specialisation.vbox-kvm-sriov.configuration = {
-    virtualisation.cyberus.intel-graphics-sriov.enable = true;
-    virtualisation.virtualbox.host = {
-      enable = true;
-      enableKvm = true;
-      enableHardening = false;
-      addNetworkInterface = false;
-    };
-  };
-
-#systemd.services.enableSriov = {
-#  description = "Enable SR-IOV for PCI devices";
-#  wantedBy = [ "graphical.target" ];
-#  path = [ pkgs.pciutils ];
-#  serviceConfig = {
-#    Type = "oneshot";
-#    ExecStart = pkgs.writeShellScriptBin "enableSriov" ''
-#    deviceBDF="0000:00:02.0"
-#          IFS=" " read -ra lspciString <<< "$(lspci -s $deviceBDF -n)"
-#          if [ "''${lspciString[1]}"=="0300" ]; then
-#            IFS=":" read -ra vendorDevice <<< "''${lspciString[2]}"
-#            echo '0' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe
-#            echo '7' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_numvfs
-#            echo '1' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe
-#            echo "''${vendorDevice[0]} ''${vendorDevice[1]}" | tee -a /sys/bus/pci/drivers/vfio-pci/new_id
-#            chmod 0666 /dev/vfio/*
-#          else
-#            echo "The Device at $deviceBDF is no Graphics Card"
-#          fi
-#        '';
+#  specialisation.vbox-kvm-sriov.configuration = {
+#    virtualisation.cyberus.intel-graphics-sriov.enable = true;
+#    virtualisation.virtualbox.host = {
+#      enable = true;
+#      enableKvm = true;
+#      enableHardening = false;
+#      addNetworkInterface = false;
+#    };
 #  };
-#};
-
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -51,9 +28,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
   time.timeZone = "Asia/Tehran";
+  
+ # environment.variables = {
+ #   http_proxy = "http://192.168.211.134:10809";
+ #   https_proxy = "http://192.168.211.134:10809";
+ #   ftp_proxy = "http://192.168.211.134:10809";
+ #  # no_proxy = "localhost,127.0.0.1,.example.com";
+ # };
 
-  # Configure network proxy if necessary
- #networking.proxy.default = "http://192.168.55.106:10809";
+ # networking.proxy.default = "http://192.168.211.134:10809";
 # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 
@@ -91,7 +74,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.nh = {
       enable = true;
       flake = "/home/${user.name}/nix-config";
- #    flake = "/home/nix-config";
       clean = {
       enable = true;
       dates = "daily";
@@ -99,13 +81,28 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
+   # nixpkgs.overlays = [
+   # (import ./overlays/intel-gfx-sriov.nix)
+   # (import ./overlays/intel-firmware.nix)
+   # (import ./overlays/i915-sriov-dkms.nix)
+   # (import ./overlays/kernel.nix)
+  ]#;
+
+  services.openssh.enable = true;
+
+
    environment.systemPackages = with pkgs; [
      #vim
+     libglvnd
+     egl-wayland
+     nsis
+     polkit_gnome
+     lutris
+     nix-prefetch-git
      wget
      neofetch
      git
      curl
-#    dolphin
 #    qt5-imageformats
      networkmanager
      ffmpegthumbs
@@ -129,7 +126,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      xorg.xinput
      libinput
      gcc
-     cmake
+    # cmake
      ninja
      SDL2.dev
      xorg.libX11
@@ -168,12 +165,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     # wayland-egl
     # waylandProtocols
       libmtp
-     # mtpfs
       gvfs
-     # android-file-transfer
       glib
       jmtpfs
-     # go-mtpfs
       ];
 
   
@@ -181,14 +175,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.gvfs.enable = true;
 
 
-services.xserver = {
-  enable = true;
-  layout = "us";  # Adjust to your preferred keyboard layout
- # xkbOptions = "ctrl:nocaps";  # Example for remapping Caps Lock to Control
-
-  libinput = {
+  services.libinput = {
     enable = true;  # Enable libinput for input devices
   };
+
+services.xserver = {
+  enable = true;
+  xkb.layout = "us";  # Adjust to your preferred keyboard layout
+ # xkbOptions = "ctrl:nocaps";  # Example for remapping Caps Lock to Control
 };
 
 
@@ -212,26 +206,6 @@ services.displayManager.sddm = {
 };
 
 nixpkgs.config.allowUnfree = true;
-
- # Set HTTP and HTTPS proxies
-# environment.variables = {
-#   http_proxy = "http://192.168.152.148:10809";
-#   https_proxy = "http://192.168.152.148:10809";
-#  # no_proxy = "localhost,127.0.0.1,.example.com";  # Optional
-# };
-
-
-# environment.variables = {
-#   CURL_PROXY = "http://192.168.152.148:10809";
-# };
-
-  # Create a wrapper script for curl
-# system.activationScripts.curlProxy = {
-#   text = ''
-#     export http_proxy="$CURL_PROXY"
-#     export https_proxy="$CURL_PROXY"
-#   '';
-# };
 
   system.stateVersion = "24.05";
 

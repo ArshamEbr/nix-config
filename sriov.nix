@@ -5,10 +5,21 @@ let
     pname = "intel-graphics-firmware";
     version = "4a1f9d7";
 
-    src = builtins.fetchGit {
-      url = "https://github.com/intel/intel-linux-firmware.git";
-      rev = "4a1f9d7438dcfc1bd9294476d97d1b21d0f2e966";
-    };
+    src = pkgs.fetchgit {
+  url = "https://github.com/intel/intel-linux-firmware.git";
+  rev = "4a1f9d7438dcfc1bd9294476d97d1b21d0f2e966";
+  sha256 = "sha256-1LPgu/Zvtawuefn4aGNvYBSsIy4Jb2KHJtpDYnihgDs=";
+  #allRefs = true;  # Ensures all refs are fetched, not just the default branch
+};
+
+    #src = builtins.fetchGit {
+    #  url = "https://github.com/intel/intel-linux-firmware.git";
+    #  rev = "4a1f9d7438dcfc1bd9294476d97d1b21d0f2e966";
+    #  allRefs = true;
+    #  #branch = "master";  # Specify the correct branch here
+    #  #sha256 = "0fw0l5w64hys4s3n4vq95qisq530dxiniy7rg4pardbgysxy1cyl";
+    #  #hash = "sha256-0fw0l5w64hys4s3n4vq95qisq530dxiniy7rg4pardbgysxy1cyl";
+    #};
 
     installPhase = "
       mkdir -p $out/lib/firmware/i915
@@ -93,6 +104,7 @@ in
           IFS=" " read -ra lspciString <<< "$(lspci -s $deviceBDF -n)"
           if [ "''${lspciString[1]}"=="0300" ]; then
             IFS=":" read -ra vendorDevice <<< "''${lspciString[2]}"
+            echo '1' | tee -a /sys/module/vfio_pci/parameters/enable_sriov
             echo '0' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe
             echo '7' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_numvfs
             echo '1' | tee -a /sys/bus/pci/devices/$deviceBDF/sriov_drivers_autoprobe

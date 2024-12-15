@@ -16,18 +16,18 @@
       protonvpn-gui
       tg
       vscodium
-      waybar
+     # waybar
       webcord
       brave
       firefox
       dunst
       rofi-wayland
       swww
-      polkit_gnome
       cliphist
       hyprpicker
       wlogout
-      networkmanagerapplet
+     # discord-ptb
+    # networkmanagerapplet
     ];
 
   };
