@@ -81,12 +81,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
-   # nixpkgs.overlays = [
-   # (import ./overlays/intel-gfx-sriov.nix)
-   # (import ./overlays/intel-firmware.nix)
-   # (import ./overlays/i915-sriov-dkms.nix)
-   # (import ./overlays/kernel.nix)
-  ]#;
+    nixpkgs.overlays = [
+    (import ./overlays/intel-gfx-sriov.nix)
+    (import ./overlays/intel-firmware.nix)
+    (import ./overlays/i915-sriov-dkms.nix)
+    (import ./overlays/kernel.nix)
+  ];
 
   services.openssh.enable = true;
 
