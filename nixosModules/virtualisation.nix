@@ -16,8 +16,8 @@
 
     boot.kernelParams = [
     # "split_lock_detect=off"
-    # "i915.force_probe=*"
-    # "i915.max_vfs=7"
+    #  "i915.max_vfs=7"
+    #  "i915.force_probe=7d55"
       "intel_iommu=on"
       "iommu=pt"
       #"vfio-pci.ids=10de:1c94"
@@ -35,6 +35,9 @@
         "nvidia_drm"
       ];
     };
+
+      # SR-IOV Module
+ # boot.extraModulePackages = with pkgs; [ intel-gfx-sriov ];
     
 
     boot.blacklistedKernelModules = [ "nouveau" ];

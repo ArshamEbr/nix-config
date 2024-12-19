@@ -4,20 +4,9 @@
   imports =
     [
       ./nixosModules
-    #  ./sriov.nix
     ];
 
 hardware.graphics.enable = true;
-
-#  specialisation.vbox-kvm-sriov.configuration = {
-#    virtualisation.cyberus.intel-graphics-sriov.enable = true;
-#    virtualisation.virtualbox.host = {
-#      enable = true;
-#      enableKvm = true;
-#      enableHardening = false;
-#      addNetworkInterface = false;
-#    };
-#  };
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -81,18 +70,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
-    nixpkgs.overlays = [
-    (import ./overlays/intel-gfx-sriov.nix)
-    (import ./overlays/intel-firmware.nix)
-    (import ./overlays/i915-sriov-dkms.nix)
-    (import ./overlays/kernel.nix)
-  ];
-
   services.openssh.enable = true;
 
 
    environment.systemPackages = with pkgs; [
      #vim
+     mesa-demos
      libglvnd
      egl-wayland
      nsis
