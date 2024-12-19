@@ -58,6 +58,12 @@
       };
     };
 
+input = {
+  kb_layout = "us,ir";         # Use a string for layouts
+  kb_variant = ",qwerty";      # Align variants with layouts (use commas for empty variants)
+  kb_options = "grp:alt_shift_toggle" ; # Optional: Add switching behavior
+};
+
     input.touchpad = {
       natural_scroll = true;
 #      drag_lock = true;

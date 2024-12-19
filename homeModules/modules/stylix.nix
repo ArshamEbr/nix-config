@@ -9,35 +9,10 @@
     stylix = {
       enable = true;
       autoEnable = true;
-      image = ../../misc/quasar-catppuccin-mocha.png;
+      image = ../../assets/nixos-catppuccin-mocha.png;
       polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-      override = {
-        base00 = "181825";
-        base01 = "1e1e2e";
-        base04 = "b6d1fc";
-      #  base08 = "cba6f7";
-      #  base0E = "f38ba8";
-      };
-
-      #base16Scheme = {
-      #  base00 = "11111b";
-      #  base01 = "181825";
-      #  base02 = "1e1e2e";
-      #  base03 = "313244";
-      #  base04 = "b6d1fc";
-      #  base05 = "cee0fd";
-      #  base06 = "e7f0fe";
-      #  base07 = "ffffff"; # text
-      #  base08 = "89b4fa"; # options
-      #  base09 = "f2cdcd"; # boolean
-      #  base0A = "ffffcc"; # traces ? idk
-      #  base0B = "99ffbb"; # string
-      #  base0C = "94e2d5";
-      #  base0D = "89b4fa"; # border
-      #  base0E = "ff99cc"; # errors
-      #  base0F = "f2cdcd"; # characters
-      #};
+      override.base04 = "b6d1fc";
 
       cursor = {
         name = "Bibata-Modern-Classic";
@@ -46,25 +21,25 @@
       };
 
       opacity = {
-        applications = 0.7;
-        desktop = 0.7;
+        applications = 1.0;
+        desktop = 1.0;
         popups = 1.0;
         terminal = 1.0;
       };
 
-      #fonts = {
-      #  monospace = {
-      #    name = "JetBrainsMonoNF-SemiBold";
-      #    package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-      #  };
-#
-      #  sizes = {
-      #    applications = 10;
-      #    desktop = 10;
-      #    popups = 10;
-      #    terminal = 12;
-      #  };
-      #};
+      fonts = {
+        monospace = {
+          name = "JetBrainsMonoNF-SemiBold";
+          package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        };
+
+        sizes = {
+          applications = 10;
+          desktop = 10;
+          popups = 10;
+          terminal = 12;
+        };
+      };
 
       targets = {
         kitty.variant256Colors = true;
