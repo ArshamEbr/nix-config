@@ -16,7 +16,7 @@
       protonvpn-gui
       tg
       vscodium
-     # waybar
+      waybar
       webcord
       brave
       firefox

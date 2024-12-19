@@ -8,6 +8,8 @@
 
 hardware.graphics.enable = true;
 
+boot.kernelPackages = pkgs.linuxPackages_latest;
+
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
@@ -50,13 +52,26 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
+    programs = {
+    #adb.enable = true;
+    fish.enable = true;
+  };
+
+    users.users.${user.name} = {
+    isNormalUser = true;
+    shell = pkgs.fish;
+    extraGroups = [
+      "NetworkManager"
+      "wheel"
+      "plugdev"
+      "adbusers"
+    ];
+  };
+
+
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-
-   users.users.${user.name} = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "NetworkManager" "plugdev" "NetworkManager" ];
-   };
 
    virtual.enable = true;
 
@@ -74,11 +89,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
    environment.systemPackages = with pkgs; [
-     #vim
+     helix
      mesa-demos
      libglvnd
      egl-wayland
-     nsis
      polkit_gnome
      lutris
      nix-prefetch-git
@@ -86,71 +100,19 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      neofetch
      git
      curl
-#    qt5-imageformats
      networkmanager
      ffmpegthumbs
      kde-cli-tools
-#    swaylock-effects-git
-#    polkit-kde-agent
      sbctl
      p7zip
      btop
      lshw
      rustc
-     cmake
      gnumake
-     gcc
-     freetype
-     wayland
-     ninja
-     binutils
-     libiberty
-     xorg.xf86inputevdev
-     xorg.xinput
-     libinput
-     gcc
-    # cmake
-     ninja
-     SDL2.dev
-     xorg.libX11
-     xorg.libXrandr
-     xorg.libXi
-     xorg.libXcursor
-     freetype
-     mesa
-     pkg-config
-     libGLU
-     SDL2_ttf
-     fontconfig
-     gmp
-     spice-protocol
-     nettle
-     harfbuzz
-     xorg.libXdmcp
+     libmtp
+     gvfs
      glib
-     pcre
-     pcre2
-     expat
-     wayland
-     wayland-protocols
-     binutils
-     libiberty
-     libbfd
-     libxkbcommon
-     xscreensaver
-     xorg.libXScrnSaver
-     xorg.libXinerama
-     xorg.libXpresent
-     pipewire
-     pulseaudio
-     libsamplerate
-     wayland-scanner
-    # wayland-egl
-    # waylandProtocols
-      libmtp
-      gvfs
-      glib
-      jmtpfs
+     jmtpfs
       ];
 
   
